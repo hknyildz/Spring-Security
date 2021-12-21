@@ -1,10 +1,7 @@
 package com.hknyildz.Spring.Security.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "USER_TABLE")
@@ -25,6 +22,9 @@ public class UserEntity {
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "ROLE")
+    private String role;
 
 
     public Long getId() {
@@ -67,5 +67,11 @@ public class UserEntity {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

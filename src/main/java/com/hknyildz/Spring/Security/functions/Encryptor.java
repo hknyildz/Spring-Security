@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 public class Encryptor {
     public  String EncryptString(String input) throws NoSuchAlgorithmException
     {
+
         String algorithm ="SHA-256";
         MessageDigest md = MessageDigest.getInstance(algorithm);
         byte[] messageDigest = md.digest(input.getBytes());

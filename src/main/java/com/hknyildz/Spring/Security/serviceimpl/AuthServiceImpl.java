@@ -6,6 +6,7 @@ import com.hknyildz.Spring.Security.functions.Encryptor;
 import com.hknyildz.Spring.Security.model.dto.UserDto;
 import com.hknyildz.Spring.Security.service.IAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -25,11 +26,11 @@ public class AuthServiceImpl implements IAuthService {
         userEntity.setFirstName(userDto.getFirstName());
         userEntity.setLastName(userDto.getLastName());
         userEntity.setEmail(userDto.getEmail());
-
+        userEntity.setRole(userDto.getRole());
         String password = userDto.getPassword();
-        String encryptedPassword = encryptor.EncryptString(password);
 
-        userEntity.setPassword(encryptedPassword);
+
+        userEntity.setPassword(new BCryptPasswordEncoder().encode(password));
         return AuthDao.register(userEntity);
     }
 
