@@ -18,12 +18,13 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Autowired
     private IAuthDao dao;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 
         UserEntity user = dao.findByEmail(email);
-        if (user==null){
+        if (user == null) {
             throw new UsernameNotFoundException("User Not Found");
         }
         return new CustomUserDetails(user);

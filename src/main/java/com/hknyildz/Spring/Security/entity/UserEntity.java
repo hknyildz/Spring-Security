@@ -1,6 +1,10 @@
 package com.hknyildz.Spring.Security.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +30,9 @@ public class UserEntity {
     @Column(name = "ROLE")
     private String role;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @JsonIgnore
+    private Set<ContentEntity> foods = new HashSet<>();
 
     public Long getId() {
         return id;
